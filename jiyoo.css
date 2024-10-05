@@ -1,0 +1,17 @@
+h1 {
+  color: blue;
+  text-align: center;
+}
+.bb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.aa {
+  margin-bottom: 10px;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
