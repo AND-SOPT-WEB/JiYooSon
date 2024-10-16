@@ -1,0 +1,25 @@
+header {
+  display: grid; /*표 처럼 나누고 그 안에 요소들을 넣는 것*/
+  grid-template-columns: 1fr 1fr 1fr; /*그리드 칸을 나누는 거임, 나는 같은 크기 3개로 나누고 싶으니까 1fr 3개*/
+  align-items: center;
+  background-color: #bad2ff;
+  padding: 1.2rem;
+}
+
+.leftHeader {
+  color: white;
+  text-align: left;
+}
+
+.centerHeader {
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.rightHeader {
+  color: white;
+  text-align: right;
+  font-size: 0.9rem;
+}
