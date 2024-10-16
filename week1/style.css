@@ -3,7 +3,7 @@
   position: fixed; /* 스크롤 시 상단 고정 */
   top: 0; /* 이거 해야 조금 더 상단에 예쁘게 붙어있음, 안 하니까 살짝 내려와서 보기 안 좋음*/
   left: 0; /* 이거 안 하면 헤드가 뭔가 오른쪽으로 좀 쏠려있음*/
-  width: 100%; /* 화면 너비에 맞게 확장하는 속성 -> 이거 안 하니까 justify-content: space-between 안 먹히더라*/
+  width: 100%; /* 화면 너비에 맞게 확장하는 속성! justify-content: space-between은 부모요소를 기준으로 정렬되기 때문에 크기 설정해줘야함*/
   display: flex;
   justify-content: space-between; /* 왼쪽과 오른쪽으로 배치 */
   align-items: center;
@@ -28,19 +28,14 @@
   padding: 0;
 }
 
-.header_right ul {
-  list-style: none;
+.header_right {
   display: flex;
   gap: 20px;
-  margin-right: 20px;
-  margin-top: 10px;
-  margin-bottom: 3px;
-  padding: 0;
+  margin: 0 20px 0 0;
 }
 
-.header_right img {
-  width: 20px;
-  height: 20px;
+.headerIcons {
+  font-size: 20px;
 }
 
 /*홈 배너*/
@@ -64,8 +59,7 @@
   padding: 8px;
   border-radius: 5px;
 }
-.link a {
-  /*link클래스 안에 있는 특정 a태그에만 스타일 적용하기 위해 작성, 근데 .link만 했을 때 밑줄 취소하는 속성이 안 먹히는 이유는 뭘까?*/
+.instagram {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
@@ -76,7 +70,7 @@
   text-decoration: none;
   border-radius: 5px;
 }
-.link a:hover {
+.instagram:hover {
   transform: scale(1.1); /*마우스 갖다대면 링크 크기 1.1배로 확대되는 속성*/
 }
 
@@ -97,7 +91,7 @@
   overflow: hidden;
 }
 .infinite_image ul {
-  display: flex; /*이미지를 가로로 배치하는 건 왜 img 말고 ul에 해야 먹힐까*/
+  display: flex; /*이 속성은 해당 클래스의 자식요소에 적용 됨 즉, li가 가로 배치 되기 위해 ul에 이 속성 적용해야 함*/
   animation: scroll 10s linear infinite; /*linear 속성은 애니메이션 속도가 일정하도록 설정하는 것*/
   padding-left: 5px;
   list-style: none;
@@ -134,13 +128,11 @@
 .scroll_view_title {
   padding-top: 5px;
   font-weight: 550;
-  margin: 0;
-  margin-left: 10px;
+  margin: 0 0 0 10px;
 }
 .scroll_image {
   overflow: scroll;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0 10px 0 10px;
   scroll-behavior: smooth;
 }
 .scroll_image ul {
