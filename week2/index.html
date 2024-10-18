@@ -18,5 +18,91 @@
       <p class="centerHeader">회원 관리 페이지</p>
       <p class="rightHeader">🐱WAVE WEB 쥬먐🐱</p>
     </header>
+
+    <!--필터-->
+    <section class="filter">
+      <div class="filter-name">
+        <label class="label-name">이름</label>
+        <input
+          type="text"
+          id="user-name"
+          name="user-name"
+          placeholder="이름을 입력하세요"
+        />
+      </div>
+      <div class="filter-Ename">
+        <label class="label-Ename">영문이름</label>
+        <input
+          type="text"
+          id="user-Ename"
+          name="user-Ename"
+          placeholder="영문이름을 입력하세요"
+        />
+      </div>
+
+      <div class="filter-g-g-r">
+        <div class="filter-github">
+          <label class="label-github">GitHub</label>
+          <input
+            type="text"
+            id="user-github"
+            name="user-github"
+            placeholder="GitHub ID를 입력하세요"
+          />
+        </div>
+        <div class="filter-gender">
+          <label class="label-gender">성별</label>
+          <input type="text" id="user-gender" name="user-gender" />
+        </div>
+        <div class="filter-role">
+          <label class="label-role">역할</label>
+          <input type="text" id="user-role" name="user-role" />
+        </div>
+      </div>
+
+      <div class="filter-team">
+        <div class="filter-week1team">
+          <label class="label-week1team">1주차 금잔디조</label>
+          <input
+            type="text"
+            id="user-week1team"
+            name="user-week1team"
+            placeholder="1주차 금잔디조를 입력하세요 (1~9)"
+          />
+        </div>
+        <div class="filter-week2team">
+          <label class="label-week2team">2주차 금잔디조</label>
+          <input
+            type="text"
+            id="user-week2team"
+            name="user-week2team"
+            placeholder="2주차 금잔디조를 입력하세요 (1~9)"
+          />
+        </div>
+      </div>
+
+      <div class="filter-btn">
+        <button class="btn-clear">초기화</button>
+        <button class="btn-search">검색</button>
+      </div>
+    </section>
+
+    <!--표-->
+    <div class="btn-table">
+      <button class="btn-delete">선택삭제</button>
+      <button class="btn-add">추가</button>
+    </div>
+    <table>
+      <tr>
+        <th><input type="checkbox" /></th>
+        <th>이름</th>
+        <th>영문이름</th>
+        <th>GitHub</th>
+        <th>성별</th>
+        <th>역할</th>
+        <th>1주차 금잔디</th>
+        <th>2주차 금잔디</th>
+      </tr>
+    </table>
   </body>
 </html>

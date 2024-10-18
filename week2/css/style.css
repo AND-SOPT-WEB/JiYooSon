@@ -1,3 +1,4 @@
+/*헤더*/
 header {
   display: grid; /*표 처럼 나누고 그 안에 요소들을 넣는 것*/
   grid-template-columns: 1fr 1fr 1fr; /*그리드 칸을 나누는 거임, 나는 같은 크기 3개로 나누고 싶으니까 1fr 3개*/
@@ -22,4 +23,69 @@ header {
   color: white;
   text-align: right;
   font-size: 0.9rem;
+}
+
+/*필터*/
+.filter {
+  margin: 1rem 15rem 2rem 15rem;
+  background-color: #bad2ff;
+}
+
+.filter-g-g-r {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.filter-team {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.filter-btn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.filter-name {
+  padding: 1rem;
+}
+.filter-Ename {
+  padding: 1rem;
+}
+.filter-github {
+  padding: 1rem;
+}
+.filter-gender {
+  padding: 1rem;
+}
+.filter-role {
+  padding: 1rem;
+}
+.filter-week1team {
+  padding: 1rem;
+}
+.filter-week2team {
+  padding: 1rem;
+}
+
+.label-name {
+  background-color: #e9e9e9;
+}
+.label-Ename {
+  background-color: #e9e9e9;
+}
+.label-github {
+  background-color: #e9e9e9;
+}
+.label-gender {
+  background-color: #e9e9e9;
+}
+.label-role {
+  background-color: #e9e9e9;
+}
+.label-week1team {
+  background-color: #e9e9e9;
+}
+.label-week2team {
+  background-color: #e9e9e9;
 }
