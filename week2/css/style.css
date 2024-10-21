@@ -47,7 +47,7 @@ header {
 }
 
 .filter-name,
-.filter-Ename {
+.filter-englishName {
   grid-column: 1/7;
 }
 
@@ -63,21 +63,21 @@ header {
   grid-column: 5/7;
 }
 
-.filter-week1team {
+.filter-firstWeekGroup {
   grid-column: 1/4;
 }
 
-.filter-week2team {
+.filter-secondWeekGroup {
   grid-column: 4/7;
 }
 
 .filter-name,
-.filter-Ename,
+.filter-englishName,
 .filter-github,
 .filter-gender,
 .filter-role,
-.filter-week1team,
-.filter-week2team {
+.filter-firstWeekGroup,
+.filter-secondWeekGroup {
   display: flex;
 }
 

@@ -31,13 +31,13 @@
             placeholder="이름을 입력하세요"
           />
         </div>
-        <div class="filter-Ename">
-          <label class="label-Ename">영문이름</label>
+        <div class="filter-englishName">
+          <label class="label-englishName">영문이름</label>
           <input
             type="text"
-            id="user-Ename"
-            name="user-Ename"
-            placeholder="영문이름을 입력하세요"
+            id="user-englishName"
+            name="user-englishName"
+            placeholder="영문 이름을 입력하세요"
           />
         </div>
           <div class="filter-github">
@@ -61,26 +61,26 @@
             <label class="label-role">역할</label>
             <select class="select-role">
               <option value="" disabled selected>OB/YB 선택</option>
-              <option value="1">OB</option>
-              <option value="2">YB</option>
+              <option value="3">OB</option>
+              <option value="4">YB</option>
             </select>
           </div>
         </div>
-        <div class="filter-week1team">
-            <label class="label-week1team">1주차 금잔디조</label>
+        <div class="filter-firstWeekGroup">
+            <label class="label-firstWeekGroup">1주차 금잔디조</label>
             <input
               type="text"
-              id="user-week1team"
-              name="user-week1team"
+              id="user-firstWeekGroup"
+              name="user-firstWeekGroup"
               placeholder="1주차 금잔디조를 입력하세요 (1~9)"
             />
           </div>
-          <div class="filter-week2team">
-            <label class="label-week2team">2주차 금잔디조</label>
+          <div class="filter-secondWeekGroup">
+            <label class="label-secondWeekGroup">2주차 금잔디조</label>
             <input
               type="text"
-              id="user-week2team"
-              name="user-week2team"
+              id="user-secondWeekGroup"
+              name="user-secondWeekGroup"
               placeholder="2주차 금잔디조를 입력하세요 (1~9)"
             />
           </div>
@@ -100,46 +100,20 @@
         <button class="btn-add">추가</button>
       </div>
       <table>
-        <tr>
-          <th><input type="checkbox" /></th>
-          <th>이름</th>
-          <th>영문이름</th>
-          <th>GitHub</th>
-          <th>성별</th>
-          <th>역할</th>
-          <th>1주차 금잔디</th>
-          <th>2주차 금잔디</th>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>홍길동</td>
-          <td>hong</td>
-          <td>hong_git</td>
-          <td>남자</td>
-          <td>OB</td>
-          <td>2</td>
-          <td>9</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>박채연</td>
-          <td>park</td>
-          <td>cheneey_git</td>
-          <td>여자</td>
-          <td>OB</td>
-          <td>4</td>
-          <td>7</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>손지유</td>
-          <td>jiyoo</td>
-          <td>zzz.myam</td>
-          <td>여자</td>
-          <td>YB</td>
-          <td>3</td>
-          <td>1</td>
-        </tr>
+        <thead>
+          <tr>
+            <th><input type="checkbox" /></th>
+            <th>이름</th>
+            <th>영문 이름</th>
+            <th>GitHub</th>
+            <th>성별</th>
+            <th>역할</th>
+            <th>1주차 금잔디</th>
+            <th>2주차 금잔디</th>
+          </tr>
+        </thead>
+        
+        <tbody id="webbyData"></tbody>
       </table>
     </div>
 
@@ -154,8 +128,8 @@
         <div class="modal-main">
           <p class="modal-name">이름</p>
           <input type="text" id="new-name" name="new-name" placeholder="이름을 입력하세요"/>
-          <p class="modal-Ename">영문 이름</p>
-          <input type="text" id="new-Ename" name="new-Ename" placeholder="영문 이름을 입력하세요"/>
+          <p class="modal-englishName">영문 이름</p>
+          <input type="text" id="new-englishName" name="new-englishName" placeholder="영문 이름을 입력하세요"/>
           <p class="modal-github">GitHub ID</p>
           <input type="text" id="new-github" name="new-github" placeholder="GitHub ID를 입력하세요"/>
           <p class="modal-gender">성별</p>
@@ -167,13 +141,13 @@
           <p class="modal-role">역할</p>
           <select class="select-modal-role">
             <option value="" disabled selected>OB/YB 선택</option>
-            <option value="1">OB</option>
-            <option value="2">YB</option>
+            <option value="3">OB</option>
+            <option value="4">YB</option>
           </select>
-          <p class="modal-week1team">1주차 금잔디조</p>
-          <input type="text" id="new-week1team" name="new-week1team" placeholder="1주차 금잔디조를 입력하세요 (1~9)"/>
-          <p class="modal-week2team">2주차 금잔디조</p>
-          <input type="text" id="new-week2team" name="new-week2team" placeholder="2주차 금잔디조를 입력하세요 (1~9)"/>
+          <p class="modal-firstWeekGroup">1주차 금잔디조</p>
+          <input type="text" id="new-firstWeekGroup" name="new-firstWeekGroup" placeholder="1주차 금잔디조를 입력하세요 (1~9)"/>
+          <p class="modal-secondWeekGroup">2주차 금잔디조</p>
+          <input type="text" id="new-secondWeekGroup" name="new-secondWeekGroup" placeholder="2주차 금잔디조를 입력하세요 (1~9)"/>
           </div>
         
 
@@ -182,7 +156,7 @@
     </div>
 
     <!--자바스크립트 연결-->
-    <script src="./index.js" type="module"></script>
+    <script src="./js/index.js" type="module"></script>
 
   </body>
 </html>
