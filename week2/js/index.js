@@ -1,3 +1,5 @@
+//--로컬 스토리지--
+
 //데이터를 가져와라 일단
 //여기서 members는 data js에 있는 웨비들 다 묶은 변수명
 //members를 ./data.js에서 꺼내와라
@@ -10,6 +12,8 @@ window.localStorage.setItem('webby', data); //webby는 key값, data가 value
 //저장된 데이터 가져온 후, JSON 형식의 데이터를 JavaScript 객체로 변환
 const webbyData = window.localStorage.getItem('webby');
 const dataList = JSON.parse(webbyData); //여러 변수를 거쳐, 웨비들의 데이터 변수명은 dataList가 됨!! 기억하고 있자
+
+//--데이터를 테이블에 넣기--
 
 //html에서 데이터 넣을 곳을 선택해야함
 const tableBody = document.querySelector('#webbyData'); //html에서 tablebody의 아이디를 weebyData라고 설정해둠
@@ -46,7 +50,7 @@ dataList.forEach((webMember) => {
   secondWeekGroupCell.textContent = webMember.secondWeekGroup;
 });
 
-//초기화 버튼
+//--초기화 버튼--
 const clearBtn = document.querySelector('.btn-clear');
 
 clearBtn.addEventListener('click', () => {
@@ -57,11 +61,11 @@ clearBtn.addEventListener('click', () => {
   selects.forEach((select) => (select.selectedIndex = 0)); //select 값도 초기화 되어야 함. '0'이 select를 초기화 시키는 방법
 });
 
-//검색 버튼
+//--검색 버튼--
 const searchBtn = document.querySelector('.btn-search');
 
 searchBtn.addEventListener('click', (event) => {
-  event.preventDefault(); //기본 동작을 막아야 한다고 함... 왜?
+  event.preventDefault(); //기본 동작을 막아야 한다고 함 -> 검색 버튼을 클릭했을 때 페이지 새로고침을 막는 역할을 함
 
   //입력된 필터 값 인식 뚜루뚜루
   const nameFilter = document.querySelector('#user-name').value;
@@ -81,20 +85,43 @@ searchBtn.addEventListener('click', (event) => {
 
   //필터링 된 데이터 배열 생성
   const filteredData = dataList.filter((webMember) => {
+    //webMember는 배열의 각 요소를 나타냄
     //dataList의 모든 사람들 데이터
-    const filteredName = nameFilter === '' || webMember.name.includes(nameFilter);
-    const filteredEnglishName = englishnameFilter === '' || webMember.englishName.toLowerCase().includes(englishnameFilter);
-    const filteredGithub = githubFilter === '' || webMember.github.toLowerCase().includes(githubFilter);
-    const filteredGender = genderFilter === '' || webMember.gender === (genderFilter === '1' ? 'male' : 'female');
-    const filteredRole = roleFilter === '' || webMember.role === (roleFilter === '3' ? 'OB' : 'YB');
-    const filteredFirstWeekGroup = firstWeekGroupFilter === '' || webMember.firstWeekGroup.includes(firstWeekGroupFilter);
-    const filteredSecondWeekGroup = secondWeekGroupFilter === '' || webMember.secondWeekGroup.includes(secondWeekGroupFilter);
-    
-    return filteredName && filteredEnglishName && filteredGithub && filteredGender && filteredRole && filteredFirstWeekGroup && filteredSecondWeekGroup;
+    const filteredName =
+      nameFilter === '' || webMember.name.includes(nameFilter); //webMember.name 중 nameFilter에 입력된 값을 포함하는 값을 반환하라!
+    const filteredEnglishName =
+      englishnameFilter === '' ||
+      webMember.englishName.toLowerCase().includes(englishnameFilter);
+    const filteredGithub =
+      githubFilter === '' ||
+      webMember.github.toLowerCase().includes(githubFilter);
+    const filteredGender =
+      genderFilter === '' ||
+      webMember.gender === (genderFilter === '1' ? 'male' : 'female');
+    const filteredRole =
+      roleFilter === '' ||
+      webMember.role === (roleFilter === '3' ? 'OB' : 'YB');
+    const filteredFirstWeekGroup =
+      firstWeekGroupFilter === '' ||
+      webMember.firstWeekGroup.includes(firstWeekGroupFilter);
+    const filteredSecondWeekGroup =
+      secondWeekGroupFilter === '' ||
+      webMember.secondWeekGroup.includes(secondWeekGroupFilter);
+
+    return (
+      filteredName &&
+      filteredEnglishName &&
+      filteredGithub &&
+      filteredGender &&
+      filteredRole &&
+      filteredFirstWeekGroup &&
+      filteredSecondWeekGroup //모든 조건을 만족하는 값 반환
+    );
   });
 
   //필터링 된 데이터 테이블에 추가
   filteredData.forEach((webMember) => {
+    //여기서 webMember는 배열의 각 항목을 나타내는 변수
     const newRow = tableBody.insertRow();
 
     const checkBoxCell = newRow.insertCell();
@@ -116,3 +143,47 @@ searchBtn.addEventListener('click', (event) => {
     secondWeekGroupCell.textContent = webMember.secondWeekGroup;
   });
 });
+
+//--체크박스 전체 선택 및 해제--
+const checkAll = document.querySelector('#check-all');
+checkAll.addEventListener('click', function () {
+  const isChecked = checkAll.checked;
+
+  if (isChecked) {
+    //if...else 문: 조건에 따라 코드 실행 - isChecked가 참일 때 실행
+    const checkboxes = document.querySelectorAll(
+      '#webbyData input[type="checkbox"]'
+    );
+    for (const checkbox of checkboxes) {
+      //for...of 문: 반복해서 코드 실행 - 정해진 횟수만큼 코드 반복
+      checkbox.checked = true;
+    }
+  } else {
+    const checkboxes = document.querySelectorAll(
+      '#webbyData input[type="checkbox"]'
+    );
+    for (const checkbox of checkboxes) {
+      checkbox.checked = false;
+    }
+  }
+});
+
+//--하나라도 체크 취소하면 제목 줄 체크박스도 해제, 하나하나 전부 체크 하면 제목 줄 체크 박스도 자동 체크--
+const checkboxes = document.querySelectorAll(
+  '#webbyData input[type="checkbox"]'
+);
+for (const checkbox of checkboxes) {
+  checkbox.addEventListener('click', function () {
+    const totalCnt = checkboxes.length; //length는 배열, 문자열 등의 길이/요소의 개수를 나타내는 속성
+    const checkedCnt = document.querySelectorAll(
+      '#webbyData input[type="checkbox"]:checked'
+    ).length;
+    if (totalCnt === checkedCnt) {
+      document.querySelector('#check-all').checked = true;
+    } else {
+      document.querySelector('#check-all').checked = false;
+    }
+  });
+}
+
+//문제: 필터링 해서 검색한 후에는 if문이 안 먹힘..
