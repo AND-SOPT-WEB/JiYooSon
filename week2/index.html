@@ -118,42 +118,51 @@
     </div>
 
     <!--모달-->
-    <div class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>새 맴버 추가</h2>
-          <span class="close-button">&times;</span> <!--x를 써도 되지만, 모양과 디자인 측면에서 버튼에는 &times;를 더 많이 쓴다고 함-->
-        </div>
-        
-        <div class="modal-main">
-          <p class="modal-name">이름</p>
-          <input type="text" id="new-name" name="new-name" placeholder="이름을 입력하세요"/>
-          <p class="modal-englishName">영문 이름</p>
-          <input type="text" id="new-englishName" name="new-englishName" placeholder="영문 이름을 입력하세요"/>
-          <p class="modal-github">GitHub ID</p>
-          <input type="text" id="new-github" name="new-github" placeholder="GitHub ID를 입력하세요"/>
-          <p class="modal-gender">성별</p>
-          <select class="select-modal-gender">
-            <option value="" disabled selected>성별 선택</option>
-            <option value="1">남자</option>
-            <option value="2">여자</option>
-          </select>
-          <p class="modal-role">역할</p>
-          <select class="select-modal-role">
-            <option value="" disabled selected>OB/YB 선택</option>
-            <option value="3">OB</option>
-            <option value="4">YB</option>
-          </select>
-          <p class="modal-firstWeekGroup">1주차 금잔디조</p>
-          <input type="text" id="new-firstWeekGroup" name="new-firstWeekGroup" placeholder="1주차 금잔디조를 입력하세요 (1~9)"/>
-          <p class="modal-secondWeekGroup">2주차 금잔디조</p>
-          <input type="text" id="new-secondWeekGroup" name="new-secondWeekGroup" placeholder="2주차 금잔디조를 입력하세요 (1~9)"/>
+    <div class="modal-all hidden"> <!--최상위 값에 hidden을 주는 과정에서 어려움이 있었음-->
+      <div class="modal-background">
+        <div id="modal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>새 맴버 추가</h2>
+              <span class="close-button">&times;</span> <!--x를 써도 되지만, 모양과 디자인 측면에서 버튼에는 &times;를 더 많이 쓴다고 함-->
+            </div>
+            
+            <div class="modal-main">
+              <label>이름</label>
+              <input type="text" id="new-name" placeholder="이름을 입력하세요"/>
+              
+              <label>영문 이름</label>
+              <input type="text" id="new-englishName" placeholder="영문 이름을 입력하세요"/>
+              
+              <label>GitHub ID</label>
+              <input type="text" id="new-github" placeholder="GitHub ID를 입력하세요"/>
+              
+              <label>성별</label>
+              <select id="new-gender">
+                <option value="male">남자</option>
+                <option value="female">여자</option>
+              </select>
+    
+              <label>역할</label>
+              <select id="new-role">
+                <option value="OB">OB</option>
+                <option value="YB">YB</option>
+              </select>
+    
+              <label>1주차 금잔디조</label>
+              <input type="text" id="new-firstWeekGroup" placeholder="1주차 금잔디조를 입력하세요 (1~9)"/>
+              <label>2주차 금잔디조</label>
+              <input type="text" id="new-secondWeekGroup" placeholder="2주차 금잔디조를 입력하세요 (1~9)"/>
+            </div>
+            
+    
+            <button class="btn-modal-add">추가</button>
           </div>
-        
-
-        <button class="btn-modal-add">추가</button>
+        </div>
       </div>
     </div>
+    
+    
 
     <!--자바스크립트 연결-->
     <script src="./js/index.js" type="module"></script>

@@ -195,7 +195,24 @@ td {
 }
 
 /*모달*/
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.hidden {
+  display: none;
+}
+
 .modal {
+  position: fixed; /*스크롤해도 모달 창 고정*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: aliceblue;
   width: 23rem;
   padding: 1rem;
@@ -210,7 +227,7 @@ td {
   font-weight: 700;
 }
 
-.modal-content p {
+.modal-content label {
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -223,6 +240,11 @@ td {
 
 .modal-main {
   padding-bottom: 1rem;
+}
+
+.modal-main label,
+input {
+  display: flex;
 }
 
 .modal input {

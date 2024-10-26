@@ -187,3 +187,90 @@ for (const checkbox of checkboxes) {
 }
 
 //문제: 필터링 해서 검색한 후에는 if문이 안 먹힘..
+
+//--선택 삭제 버튼--
+const deleteBtn = document.querySelector('.btn-delete');
+deleteBtn.addEventListener('click', function () {
+  const isChecked = document.querySelectorAll(
+    '#webbyData input[type="checkbox"]:checked'
+  );
+  isChecked.forEach((checkbox) => {
+    //체크된 체크박스 행에 이 행동 반복
+    const row = checkbox.closest('tr'); //체크박스의 '행'이 삭제 되어야 하기에 체크박스 부모요소인 'tr'을 삭제
+    //closet()은 지정된 선택자에 해당하는 가장 가까운 부모 요소를 찾는 메서드
+    row.remove();
+  });
+});
+
+//문제: 필터링 이후에는 선택 삭제 버튼이 안 먹음
+
+//--추가 버튼--
+const addBtn = document.querySelector('.btn-add');
+const modal = document.querySelector('.modal-all');
+const modalCloseBtn = document.querySelector('.close-button');
+const modalBackGround = document.querySelector('.modal-background')
+
+addBtn.addEventListener('click', function () {
+  modal.classList.remove('hidden'); //classList는 css클래스들을 추가,제거 할 수 있는 기능 여기서는 hidden을 제거해서 모달이 보이도록!
+});
+
+modalCloseBtn.addEventListener('click', function () {
+  modal.classList.add('hidden');
+});
+
+modalBackGround.addEventListener('click', function(){
+  modal.classList.add('hidden');
+});
+
+
+
+//추가 버튼 누르면 데이터 읽어와서 로컬 스토리지에 추가하고 모달 닫기
+const modalAddBtn = document.querySelector('.btn-modal-add');
+
+modalAddBtn.addEventListener('click', function(){
+  const name = document.querySelector('#new-name').value;
+  const englishName = document.querySelector('#new-englishName').value;
+  const githubId = document.querySelector('#new-github').value;
+  const gender = document.querySelector('#new-gender').value;
+  const role = document.querySelector('#new-role').value;
+  const firstWeekGroup = document.querySelector('#new-firstWeekGroup').value;
+  const secondWeekGroup = document.querySelector('#new-secondWeekGroup').value;
+
+  const newMember = {
+    name: name,
+    englishName: englishName;
+    githubId: githubId,
+    gender: gender,
+    role: role,
+    firstWeekGroup: firstWeekGroup,
+    secondWeekGroup: secondWeekGroup
+  };
+  
+  const members = JSON.parse(localStorage.getItem('webby')) || [];
+  members.push(newMember); //새 멤버 추가
+  localStorage.setItem('webby', JSON.stringify(members)); //로컬 스토리지에 저장
+
+  //테이블 갱신(새로 추가된 데이터 반영)
+  renderTable(); //테이블에 데이터를 다시 그려주는 함수
+
+  const mdalAll = document.querySelector('.modal-all');
+  modalAll.classList.add('hidden');
+});
+
+function renderTable() {
+  const members = JSON.parse(localStorage.getItem('webby')) || [];
+  tableBody.innerHTML = '' //기존 테이블 내용 지우기
+
+  members.forEach((webMember) => {
+    const newrow = tableBody.insertRow();
+
+    newrow.insertCell().innerHTML = '<input type="checkbox"/>';
+    newrow.insertCell(),textContent = webMember.name;
+    newrow.insertCell(),textContent =
+    newrow.insertCell(),textContent =
+    newrow.insertCell(),textContent =
+    newrow.insertCell(),textContent =
+    newrow.insertCell(),textContent =
+    newrow.insertCell(),textContent =
+  });
+}
