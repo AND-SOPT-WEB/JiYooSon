@@ -269,3 +269,13 @@ input {
   background-color: #6f75d3;
   color: aliceblue;
 }
+
+a {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  color: blue;
+}
