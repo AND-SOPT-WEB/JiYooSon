@@ -208,7 +208,7 @@ deleteBtn.addEventListener('click', function () {
 const addBtn = document.querySelector('.btn-add');
 const modal = document.querySelector('.modal-all');
 const modalCloseBtn = document.querySelector('.close-button');
-const modalBackGround = document.querySelector('.modal-background')
+const modalBackGround = document.querySelector('.modal-background');
 
 addBtn.addEventListener('click', function () {
   modal.classList.remove('hidden'); //classList는 css클래스들을 추가,제거 할 수 있는 기능 여기서는 hidden을 제거해서 모달이 보이도록!
@@ -218,59 +218,74 @@ modalCloseBtn.addEventListener('click', function () {
   modal.classList.add('hidden');
 });
 
-modalBackGround.addEventListener('click', function(){
-  modal.classList.add('hidden');
+modalBackGround.addEventListener('click', function () {
+  if (event.target === modalBackGround) {
+    modal.classList.add('hidden');
+  }
 });
-
-
 
 //추가 버튼 누르면 데이터 읽어와서 로컬 스토리지에 추가하고 모달 닫기
 const modalAddBtn = document.querySelector('.btn-modal-add');
 
-modalAddBtn.addEventListener('click', function(){
+modalAddBtn.addEventListener('click', function () {
   const name = document.querySelector('#new-name').value;
   const englishName = document.querySelector('#new-englishName').value;
-  const githubId = document.querySelector('#new-github').value;
+  const github = document.querySelector('#new-github').value;
   const gender = document.querySelector('#new-gender').value;
   const role = document.querySelector('#new-role').value;
   const firstWeekGroup = document.querySelector('#new-firstWeekGroup').value;
   const secondWeekGroup = document.querySelector('#new-secondWeekGroup').value;
 
+  if (
+    !name ||
+    !englishName ||
+    !github ||
+    !gender ||
+    !role ||
+    !firstWeekGroup ||
+    !secondWeekGroup
+  ) {
+    alert('모든 항목을 입력해주세요');
+    return; //여기서 함수를 종료해야함
+  }
+
   const newMember = {
-    name: name,
-    englishName: englishName;
-    githubId: githubId,
-    gender: gender,
+    //새로운 객체를 정의하기 위해 사용된 변수, 이 객체에는 회원의 정보가 담김
+    name: name, //newMember 객체의 name 속성은 사용자가 입력한 name 값(변수)에 할당 된다.
+    englishName: englishName, // : 앞은 newMember의 속성 이름! 즉, newMember 객체 안에 name이라는 속성(키)를 추가하는 역할을 함
+    github: github, // : 뒤는 변수!! 사용자로부터 입력받은 데이터를 담고있는 변수로, document.querySelector('#new-github').value에서 가져온 값을 담고 있음
     role: role,
     firstWeekGroup: firstWeekGroup,
-    secondWeekGroup: secondWeekGroup
+    secondWeekGroup: secondWeekGroup,
   };
-  
-  const members = JSON.parse(localStorage.getItem('webby')) || [];
-  members.push(newMember); //새 멤버 추가
-  localStorage.setItem('webby', JSON.stringify(members)); //로컬 스토리지에 저장
+
+  const members = JSON.parse(localStorage.getItem('webby')) || []; //로컬스토리지에서 'webby'로 저장된 데이터 가져온다. 만약 'webby'에 데이터가 없으면 빈 배열을 사용한다. (그래야 빈 배열에 새 값 넣을 수 있으니까)
+  members.push(newMember); //새로 추가된 newMember를 기존의 멤버 '리스트'에 추가한다.
+  localStorage.setItem('webby', JSON.stringify(members)); //변환된 데이터를 다시 로컬 스토리지의 'webby'라는 이름으로 저장
+  //즉, 새 멤버를 기존 멤버 리스트에 추가한 후, 다시 로컬스토리지에 저장하는 역할을 함
 
   //테이블 갱신(새로 추가된 데이터 반영)
   renderTable(); //테이블에 데이터를 다시 그려주는 함수
 
-  const mdalAll = document.querySelector('.modal-all');
-  modalAll.classList.add('hidden');
+  modal.classList.add('hidden');
 });
 
 function renderTable() {
+  //이제 로컬스토리지에 저장한 멤버 데이터를 테이블에 표시하자
   const members = JSON.parse(localStorage.getItem('webby')) || [];
-  tableBody.innerHTML = '' //기존 테이블 내용 지우기
+  tableBody.innerHTML = ''; //기존 테이블 내용 지우기
 
   members.forEach((webMember) => {
-    const newrow = tableBody.insertRow();
+    const newrow = tableBody.insertRow(); //members 배열에 있는 각 멤버를 순차적으로 반복해서 처리, webMember은 그 배열의 각 요소를 나타냄
 
+    //테이블에 새로운 멤버 데이터 추가
     newrow.insertCell().innerHTML = '<input type="checkbox"/>';
-    newrow.insertCell(),textContent = webMember.name;
-    newrow.insertCell(),textContent =
-    newrow.insertCell(),textContent =
-    newrow.insertCell(),textContent =
-    newrow.insertCell(),textContent =
-    newrow.insertCell(),textContent =
-    newrow.insertCell(),textContent =
+    newrow.insertCell().textContent = webMember.name;
+    newrow.insertCell().textContent = webMember.englishName;
+    newrow.insertCell().textContent = webMember.github;
+    newrow.insertCell().textContent = webMember.gender;
+    newrow.insertCell().textContent = webMember.role;
+    newrow.insertCell().textContent = webMember.firstWeekGroup;
+    newrow.insertCell().textContent = webMember.secondWeekGroup;
   });
 }
