@@ -290,3 +290,7 @@ export const members = [
     secondWeekGroup: 8,
   },
 ];
+
+if (!localStorage.getItem("webby")) {
+  localStorage.setItem("webby", JSON.stringify(members));
+}

@@ -1,19 +1,13 @@
 //--로컬 스토리지--
 
-//데이터를 가져와라 일단
 //여기서 members는 data js에 있는 웨비들 다 묶은 변수명
-//members를 ./data.js에서 꺼내와라
 import { members } from './data.js';
 
-console.log(members);
-//데이터를 JSON으로 변환해서 로컬 스토리지에 저장
 const data = JSON.stringify(members);
 if (!localStorage.getItem('webby')) {
   window.localStorage.setItem('webby', data);
 }
-//.localStorage.setItem('webby', data); //webby는 key값, data가 value
 
-//저장된 데이터 가져온 후, JSON 형식의 데이터를 JavaScript 객체로 변환
 const webbyData = window.localStorage.getItem('webby');
 const dataList = JSON.parse(webbyData); //여러 변수를 거쳐, 웨비들의 데이터 변수명은 dataList가 됨!! 기억하고 있자
 
@@ -70,7 +64,7 @@ clearBtn.addEventListener('click', () => {
   const selects = document.querySelectorAll('select');
   selects.forEach((select) => (select.selectedIndex = 0)); //select 값도 초기화 되어야 함. '0'이 select를 초기화 시키는 방법
 
-  renderTable(members);
+  renderTable(dataList);
 });
 
 //--검색 버튼--
@@ -101,10 +95,8 @@ searchBtn.addEventListener('click', (event) => {
           .includes(englishnameFilter.toLowerCase())) &&
       (githubFilter === '' ||
         webMember.github.toLowerCase().includes(githubFilter.toLowerCase())) &&
-      (genderFilter === '' ||
-        webMember.gender === (genderFilter === 'male' ? '남자' : '여자')) &&
-      (roleFilter === '' ||
-        webMember.role === (roleFilter === 'female' ? 'OB' : 'YB')) &&
+      (genderFilter === '' || webMember.gender === genderFilter) &&
+      (roleFilter === '' || webMember.role === roleFilter) &&
       (firstWeekGroupFilter === '' ||
         Number(webMember.firstWeekGroup) === Number(firstWeekGroupFilter)) &&
       (secondWeekGroupFilter === '' ||
@@ -171,8 +163,9 @@ deleteBtn.addEventListener('click', function () {
     //closet()은 지정된 선택자에 해당하는 가장 가까운 부모 요소를 찾는 메서드
     const rowIndex = Array.from(tableBody.rows).indexOf(row);
 
-    if (rowIndex !== -1) { //-1는 테이블에서 해당 행을 찾지 못한 경우를 뜻함
-      members.splice(rowIndex, 1); //members배열에서 rowIndex에 해당하는 멤버를 제거하는 것 (splice메서드는 배열에서 지정한 인덱스에서 하나의 요소를 삭제하는 역할을 함)
+    if (rowIndex !== -1) {
+      //-1는 테이블에서 해당 행을 찾지 못한 경우를 뜻함
+      dataList.splice(rowIndex, 1); //dataList배열에서 rowIndex에 해당하는 멤버를 제거하는 것 (splice메서드는 배열에서 지정한 인덱스에서 하나의 요소를 삭제하는 역할을 함)
     }
 
     row.remove();
@@ -180,8 +173,8 @@ deleteBtn.addEventListener('click', function () {
 
   retrackingCheck();
 
-  localStorage.setItem('webby', JSON.stringify(members));
-  renderTable(members);
+  localStorage.setItem('webby', JSON.stringify(dataList));
+  renderTable(dataList);
 });
 
 //--추가 버튼--
