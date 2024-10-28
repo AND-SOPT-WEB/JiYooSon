@@ -51,7 +51,7 @@ function renderTable(filteredData = dataList) {
     nameCell.textContent = webMember.name;
     englishNameCell.textContent = webMember.englishName;
     githubCell.innerHTML = `<a href="https://github.com/${webMember.github}" target="_blank">${webMember.github}</a>`;
-    genderCell.textContent = webMember.gender === 'male' ? '남자' : '여자'; //=== ? :는 조건문을 표현하는 방법, 참이면 ? 뒤에 있는 코드 실행, 거짓이면 : 뒤에 있는 코드 실행, if-else문과 같은 역할을 함
+    genderCell.textContent = webMember.gender === '남자' ? '남자' : '여자'; //=== ? :는 조건문을 표현하는 방법, 참이면 ? 뒤에 있는 코드 실행, 거짓이면 : 뒤에 있는 코드 실행, if-else문과 같은 역할을 함
     roleCell.textContent = webMember.role;
     firstWeekGroupCell.textContent = webMember.firstWeekGroup;
     secondWeekGroupCell.textContent = webMember.secondWeekGroup;
