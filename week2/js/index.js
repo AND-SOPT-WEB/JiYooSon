@@ -51,7 +51,7 @@ function renderTable(filteredData = dataList) {
     nameCell.textContent = webMember.name;
     englishNameCell.textContent = webMember.englishName;
     githubCell.innerHTML = `<a href="https://github.com/${webMember.github}" target="_blank">${webMember.github}</a>`;
-    genderCell.textContent = webMember.gender === '남자' ? '남자' : '여자'; //=== ? :는 조건문을 표현하는 방법, 참이면 ? 뒤에 있는 코드 실행, 거짓이면 : 뒤에 있는 코드 실행, if-else문과 같은 역할을 함
+    genderCell.textContent = webMember.gender === 'male' ? '남자' : '여자'; //=== ? :는 조건문을 표현하는 방법, 참이면 ? 뒤에 있는 코드 실행, 거짓이면 : 뒤에 있는 코드 실행, if-else문과 같은 역할을 함
     roleCell.textContent = webMember.role;
     firstWeekGroupCell.textContent = webMember.firstWeekGroup;
     secondWeekGroupCell.textContent = webMember.secondWeekGroup;
@@ -102,9 +102,9 @@ searchBtn.addEventListener('click', (event) => {
       (githubFilter === '' ||
         webMember.github.toLowerCase().includes(githubFilter.toLowerCase())) &&
       (genderFilter === '' ||
-        webMember.gender === (genderFilter === '1' ? '남자' : '여자')) &&
+        webMember.gender === (genderFilter === 'male' ? '남자' : '여자')) &&
       (roleFilter === '' ||
-        webMember.role === (roleFilter === '3' ? 'OB' : 'YB')) &&
+        webMember.role === (roleFilter === 'female' ? 'OB' : 'YB')) &&
       (firstWeekGroupFilter === '' ||
         Number(webMember.firstWeekGroup) === Number(firstWeekGroupFilter)) &&
       (secondWeekGroupFilter === '' ||
@@ -169,6 +169,12 @@ deleteBtn.addEventListener('click', function () {
     //체크된 체크박스 행에 이 행동 반복
     const row = checkbox.closest('tr'); //체크박스의 '행'이 삭제 되어야 하기에 체크박스 부모요소인 'tr'을 삭제
     //closet()은 지정된 선택자에 해당하는 가장 가까운 부모 요소를 찾는 메서드
+    const rowIndex = Array.from(tableBody.rows).indexOf(row);
+
+    if (rowIndex !== -1) { //-1는 테이블에서 해당 행을 찾지 못한 경우를 뜻함
+      members.splice(rowIndex, 1); //members배열에서 rowIndex에 해당하는 멤버를 제거하는 것 (splice메서드는 배열에서 지정한 인덱스에서 하나의 요소를 삭제하는 역할을 함)
+    }
+
     row.remove();
   });
 
@@ -227,6 +233,7 @@ modalAddBtn.addEventListener('click', function () {
     //새로운 객체를 정의하기 위해 사용된 변수, 이 객체에는 회원의 정보가 담김
     name: name, //newMember 객체의 name 속성은 사용자가 입력한 name 값(변수)에 할당 된다.
     englishName: englishName, // : 앞은 newMember의 속성 이름! 즉, newMember 객체 안에 name이라는 속성(키)를 추가하는 역할을 함
+    gender: gender,
     github: github, // : 뒤는 변수!! 사용자로부터 입력받은 데이터를 담고있는 변수로, document.querySelector('#new-github').value에서 가져온 값을 담고 있음
     role: role,
     firstWeekGroup: firstWeekGroup,
