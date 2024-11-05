@@ -27,7 +27,7 @@ body {
   left: 1.5rem;
   border: none;
   border-radius: 0.5rem;
-  gap: 2rem;
+  margin-right: 0.5rem;
 }
 
 .levelSelect {
