@@ -38,7 +38,7 @@ const Join = () => {
 export default Join;
 
 const JoinSection = styled.section`
-  width: 30rem;
+  width: 40rem;
   padding: 2rem;
   background-color: ${({ theme }) => theme.color.lightgray1};
 `;
