@@ -21,7 +21,4 @@ const theme = {
 
 export type ColorType = typeof theme.color;
 
-export interface ThemeType {
-  color: ColorType;
-}
 export default theme;
