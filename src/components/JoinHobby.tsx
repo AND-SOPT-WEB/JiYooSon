@@ -1,5 +1,12 @@
-import { Link } from 'react-router-dom';
-import { FormContainer } from '../styles/Styled';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Link } from "react-router-dom";
+import {
+  FooterText,
+  FormContainer,
+  Input,
+  JoinBtn,
+  Label,
+} from "../styles/JoinStyled";
 
 type JoinHobbyProps = {
   step: number;
@@ -13,8 +20,8 @@ const JoinHobby = ({ step, hobby, setHobby, signup }: JoinHobbyProps) => {
     <>
       {step === 3 && (
         <FormContainer>
-          <label htmlFor="hobby">취미</label>
-          <input
+          <Label htmlFor="hobby">취미</Label>
+          <Input
             value={hobby}
             type="text"
             id="hobby"
@@ -23,12 +30,12 @@ const JoinHobby = ({ step, hobby, setHobby, signup }: JoinHobbyProps) => {
               setHobby(e.target.value);
             }}
           />
-          <button onClick={signup} disabled={hobby.trim() === ''}>
+          <JoinBtn onClick={signup} disabled={hobby.trim() === ""}>
             회원가입
-          </button>
-          <p>
+          </JoinBtn>
+          <FooterText>
             이미 회원이신가요? <Link to="/">로그인</Link>
-          </p>
+          </FooterText>
         </FormContainer>
       )}
     </>

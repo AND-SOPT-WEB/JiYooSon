@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { JoinSection, JoinTitle } from "../styles/Styled";
+import { JoinSection, JoinTitle } from "../styles/JoinStyled";
 import JoinUsername from "../components/JoinUsername";
 import JoinPassword from "../components/JoinPassword";
 import JoinHobby from "../components/JoinHobby";

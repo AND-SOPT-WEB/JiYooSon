@@ -1,4 +1,13 @@
-import styled from '@emotion/styled';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  HomeBox,
+  HomeContainer,
+  Input,
+  Ladel,
+  MainTitle,
+  NewInfo,
+  SearchChoreBtn,
+} from "../styles/HomeStyled";
 
 type HomeInfoProps = {
   password: string;
@@ -10,36 +19,31 @@ type HomeInfoProps = {
 
 const HomeInfo = ({ setPassword, setHobby, change }: HomeInfoProps) => {
   return (
-    <UserInfoContainer>
-      <h2>내 정보 수정하기</h2>
-      <h3>새 비밀번호</h3>
-      <input
-        type="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <div>
-        <h3>새 취미</h3>
-        <input
-          type="text"
-          onChange={(e) => {
-            setHobby(e.target.value);
-          }}
-        />
-      </div>
-      <button onClick={change}>수정하기</button>
-    </UserInfoContainer>
+    <HomeContainer>
+      <MainTitle>내 정보 수정하기</MainTitle>
+      <HomeBox>
+        <NewInfo>
+          <Ladel>새 비밀번호</Ladel>
+          <Input
+            type="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </NewInfo>
+        <NewInfo>
+          <Ladel>새 취미</Ladel>
+          <Input
+            type="text"
+            onChange={(e) => {
+              setHobby(e.target.value);
+            }}
+          />
+        </NewInfo>
+        <SearchChoreBtn onClick={change}>수정하기</SearchChoreBtn>
+      </HomeBox>
+    </HomeContainer>
   );
 };
 
 export default HomeInfo;
-
-const UserInfoContainer = styled.div`
-  width: 40rem;
-  padding: 2rem;
-  background-color: ${({ theme }) => theme.color.lightgray1};
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;

@@ -1,5 +1,12 @@
-import { Link } from 'react-router-dom';
-import { FormContainer } from '../styles/Styled';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Link } from "react-router-dom";
+import {
+  FooterText,
+  FormContainer,
+  Input,
+  JoinBtn,
+  Label,
+} from "../styles/JoinStyled";
 
 type JoinPasswordProps = {
   step: number;
@@ -18,8 +25,8 @@ const JoinPassword = ({
     <>
       {step === 2 && (
         <FormContainer>
-          <label htmlFor="password">비밀번호</label>
-          <input
+          <Label htmlFor="password">비밀번호</Label>
+          <Input
             value={password}
             type="password"
             id="password"
@@ -28,17 +35,17 @@ const JoinPassword = ({
               setPassword(e.target.value);
             }}
           />
-          <button
+          <JoinBtn
             onClick={() => {
               setStep(3);
             }}
-            disabled={password.trim() === ''}
+            disabled={password.trim() === ""}
           >
             다음
-          </button>
-          <p>
+          </JoinBtn>
+          <FooterText>
             이미 회원이신가요? <Link to="/">로그인</Link>
-          </p>
+          </FooterText>
         </FormContainer>
       )}
     </>

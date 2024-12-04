@@ -3,6 +3,7 @@ import HomeHobby from "../components/HomeHobby";
 import HomeInfo from "../components/HomeInfo";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Btn, Header, HeaderBtn, HeaderTitle } from "../styles/HomeStyled";
 
 const Home = () => {
   const [password, setPassword] = useState("");
@@ -24,12 +25,14 @@ const Home = () => {
 
   return (
     <>
-      <header>
-        <h2>마이페이지</h2>
-        <button onClick={() => setSelectTab("hobby")}>취미</button>
-        <button onClick={() => setSelectTab("info")}>내 정보</button>
-        <button onClick={logout}>로그아웃</button>
-      </header>
+      <Header>
+        <HeaderTitle>MYPAGE</HeaderTitle>
+        <Btn>
+          <HeaderBtn onClick={() => setSelectTab("hobby")}>취미</HeaderBtn>
+          <HeaderBtn onClick={() => setSelectTab("info")}>내 정보</HeaderBtn>
+          <HeaderBtn onClick={logout}>로그아웃</HeaderBtn>
+        </Btn>
+      </Header>
       {selectTab === "hobby" && <HomeHobby />}
       {selectTab === "info" && (
         <HomeInfo
