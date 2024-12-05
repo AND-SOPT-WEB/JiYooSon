@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   HomeBox,
   HomeContainer,
@@ -11,13 +10,26 @@ import {
 
 type HomeInfoProps = {
   password: string;
-  setPassword: any;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
   hobby: string;
-  setHobby: any;
-  change: any;
+  setHobby: React.Dispatch<React.SetStateAction<string>>;
+  change: () => void;
 };
 
-const HomeInfo = ({ setPassword, setHobby, change }: HomeInfoProps) => {
+const HomeInfo = ({
+  password,
+  hobby,
+  setPassword,
+  setHobby,
+  change,
+}: HomeInfoProps) => {
+  const handleSubmit = () => {
+    if (password.trim() === "" && hobby.trim() === "") {
+      alert("비밀번호 또는 취미를 입력해주세요");
+      return;
+    }
+    change();
+  };
   return (
     <HomeContainer>
       <MainTitle>내 정보 수정하기</MainTitle>
@@ -40,7 +52,7 @@ const HomeInfo = ({ setPassword, setHobby, change }: HomeInfoProps) => {
             }}
           />
         </NewInfo>
-        <SearchChoreBtn onClick={change}>수정하기</SearchChoreBtn>
+        <SearchChoreBtn onClick={handleSubmit}>수정하기</SearchChoreBtn>
       </HomeBox>
     </HomeContainer>
   );

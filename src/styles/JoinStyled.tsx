@@ -64,3 +64,19 @@ export const FooterText = styled.p`
   font-size: 1.2rem;
   color: gray;
 `;
+
+export const ErrorMessage = styled.p`
+  color: red;
+`;
+
+export const TogglePasswordButton = styled.button`
+  position: absolute;
+  right: 3.5rem;
+  top: 14.9rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: gray;
+  cursor: pointer;
+  font-size: 0.9rem;
+`;

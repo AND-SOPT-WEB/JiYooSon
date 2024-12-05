@@ -1,31 +1,31 @@
-import './App.css';
-import './CSS/reset.css';
+import { ThemeProvider, Global } from "@emotion/react";
+import theme from "./styles/theme";
+import GlobalStyle from "./styles/global";
+
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import LoginPage from './Login';
-import SignupPage from './SignupPage';
-import MypageHobby from './MypageHobby';
-import MypageEdit from './MypageEdit';
-import axios from 'axios';
+import Login from "./pages/Login"; // 로그인 페이지
+import Join from "./pages/Join"; // 회원가입 페이지
+import Home from "./pages/Home"; // 메인 홈 페이지
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <Global styles={GlobalStyle} />
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/mypage/hobby" element={<MypageHobby />} />
-          <Route path="/mypage/edit" element={<MypageEdit />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </Router>
-    </>
+    </ThemeProvider>
   );
 }
 

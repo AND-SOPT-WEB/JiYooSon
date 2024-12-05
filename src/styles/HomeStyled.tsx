@@ -63,12 +63,19 @@ export const HomeBox = styled.div`
 export const MyHobby = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 `;
 
 export const Ladel = styled.label`
   font-size: 2rem;
   font-weight: 700;
   color: ${({ theme }) => theme.color.text01};
+`;
+
+export const MyHobbyText = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: gray;
 `;
 
 export const OtherHobby = styled.div`
@@ -103,4 +110,10 @@ export const NewInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`;
+
+export const SearchHobby = styled.p`
+  color: black;
+  padding-left: 0.5rem;
+  font-size: 1rem;
 `;

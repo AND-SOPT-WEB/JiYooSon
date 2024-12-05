@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import {
+  ErrorMessage,
   FooterText,
   FormContainer,
   Input,
   JoinBtn,
   Label,
 } from "../styles/JoinStyled";
+import { useEffect, useState } from "react";
 
 type JoinUsernameProps = {
   step: number;
@@ -20,6 +22,26 @@ const JoinUsername = ({
   setUsername,
   setStep,
 }: JoinUsernameProps) => {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (username.length > 8) {
+      setErrorMessage("사용자 이름은 8자 이하로 입력해주세요.");
+    } else {
+      setErrorMessage(""); 
+    }
+  }, [username]);
+
+  const handleNextStep = () => {
+    if (username.length > 8) {
+      setErrorMessage("사용자 이름은 8자 이하로 입력해주세요.");
+      return;
+    }
+
+    setErrorMessage("");
+    setStep(2);
+  };
+
   return (
     <>
       {step === 1 && (
@@ -34,11 +56,14 @@ const JoinUsername = ({
               setUsername(e.target.value);
             }}
           />
+          {errorMessage && (
+            <ErrorMessage>
+              {errorMessage}
+            </ErrorMessage>
+          )}
           <JoinBtn
-            onClick={() => {
-              setStep(2);
-            }}
-            disabled={username.trim() === ""} //username이 비어있을 때 비활성화
+            onClick={handleNextStep}
+            disabled={username.trim() === "" || username.length > 8} //username이 비어있을 때 비활성화
           >
             다음
           </JoinBtn>

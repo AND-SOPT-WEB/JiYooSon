@@ -12,10 +12,28 @@ const Home = () => {
   const navigate = useNavigate();
 
   const change = () => {
-    axios.post("http://223.130.135.50:8085/user", {
-      password: password,
-      hobby: hobby,
-    });
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
+    if (password.length > 8 || hobby.length > 8) {
+      alert("비밀번호와 취미는 각각 8자 이내로 입력해야 합니다.");
+      return;
+    }
+    axios.put(
+      "http://223.130.135.50:8085/user",
+      {
+        password: password,
+        hobby: hobby,
+      },
+      {
+        headers: {
+          token: token,
+        },
+      }
+    );
   };
 
   const logout = () => {

@@ -8,11 +8,13 @@ import {
   Ladel,
   MainTitle,
   MyHobby,
+  MyHobbyText,
   OtherHobby,
   SearchChoreBtn,
+  SearchHobby,
 } from "../styles/HomeStyled";
 
-type HomeHobbyProps = {};
+type HomeHobbyProps = object;
 
 const HomeHobby = ({}: HomeHobbyProps) => {
   const [usernum, setUsernum] = useState("");
@@ -20,9 +22,7 @@ const HomeHobby = ({}: HomeHobbyProps) => {
   const [myHobby, setMyHobby] = useState("");
 
   useEffect(() => {
-    //useEffect는 컴포넌트가 화면에 나타날 때나 특정 값이 변할 때 실행되는 함수
     const findMyHobby = async () => {
-      //async는 비동기 함수를 의미, 서버에 데이터 요청 기다렸다가 결과가 나오면 그 다음 작업 수행
       const myHobbyResponse = await axios.get(
         "http://223.130.135.50:8085/user/my-hobby",
         {
@@ -40,7 +40,7 @@ const HomeHobby = ({}: HomeHobbyProps) => {
   const search = async () => {
     try {
       const response = await axios.get(
-        `http://211.188.53.75:8080/user/${usernum}/hobby`,
+        `http://223.130.135.50:8085/user/${usernum}/hobby`,
         {
           headers: {
             token: localStorage.getItem("token"),
@@ -60,7 +60,7 @@ const HomeHobby = ({}: HomeHobbyProps) => {
       <HomeBox>
         <MyHobby>
           <Ladel>나의 취미</Ladel>
-          <p>{myHobby}</p>
+          <MyHobbyText>{myHobby}</MyHobbyText>
         </MyHobby>
         <OtherHobby>
           <Ladel>다른 사람들의 취미</Ladel>
@@ -73,9 +73,9 @@ const HomeHobby = ({}: HomeHobbyProps) => {
           />
           {usernum &&
             hobby && ( //usernum과 hobby가 있을 때만 p 태그가 뜨도록!!
-              <p>
+              <SearchHobby>
                 {usernum}번 사용자의 취미 {hobby}
-              </p>
+              </SearchHobby>
             )}
         </OtherHobby>
         <SearchChoreBtn
